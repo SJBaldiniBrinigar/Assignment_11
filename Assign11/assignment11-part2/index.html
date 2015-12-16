@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Assignment 11 Part 2 jQuery Mobile</title>
+    
+    
+            <link href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" rel="stylesheet">
+            <link href="css/styles.css" rel="stylesheet">
+            <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+            <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+            <script src="js/home.js"></script>
+            <script src="js/details.js"></script>
+            <script src="js/reports.js"></script>
+            <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!--Home Page-->
+   <div data-role="page" id="home">
+       <header data-role="header"> 
+                    <h1>Directory</h1>
+       </header>
+       
+            <section data-role="content">
+   <label for="search">Search Employees:</label>
+               <input type="search" name="search" id="search" placeholder="search">
+               
+                
+             <section data-role="content" id="welcomeMessage">
+                 <h3>Welcome to the Directory!</h3>
+                 <p>This is a sample app that demonstrates how to build applications wtih jQuery Mobile.</p>
+             </section>   
+<!--                 <div id="results"></div>-->
+               <ul id="results" data-role="listview" data-inset="true"></ul>
+                </section>                                                                                                               
+       
+        <footer data-role="footer" data-position="fixed">
+            <h4>My Company 2015</h4>
+        </footer>
+    </div>
+    
+    
+    
+    
+<!--
+Directory--Page may not be used; put results into first page with hiding the welcome info;
+   
+-->
+<!--
+   <div data-role="page" id="directory">
+        <header data-role="header">          
+            <h1>Directory</h1>            
+       </header>
+              
+    <section data-role="content">
+       <label for="search">Search Employees:</label>
+               <input type="search" name="search" id="searchBox" placeholder="search">
+               
+          <section data-role="content" id="directData">
+              <ul data-role="listview">
+                <div id="results"></div>  
+                  
+              </ul>
+              
+          </section>      
+             
+                
+    </section>                                                                                                               
+       
+        <footer data-role="footer" data-position="fixed">
+            <h4>My Company 2015</h4>
+        </footer>
+    </div>
+    
+-->
+    
+    
+<!-- Employee Details   -->
+   <div data-role="page" id="details">
+        <header data-role="header">
+           <a href="#" data-role="button" data-rel="back" class="ui-btn ui-btn-icon-left ui-icon-back" id="navback">Back</a>
+            <h1>Employee Details</h1>
+            <a href="#home" data-role="button" class="ui-btn ui-btn-icon-left ui-icon-search" id="navsearch">Search</a>   
+       </header>
+       
+       
+            <section data-role="content" id="detailsContent">
+            
+            <div id="profile"> </div>
+            
+            <ul id="info" data-role="listview" data-inset="true"></ul>
+   
+            </section>                                                                                                               
+       
+        <footer data-role="footer" data-position="fixed">
+            <h4>My Company 2015</h4>
+        </footer>
+    </div>  
+   
+   
+   
+   
+   <!-- Direct Reports   -->
+   <div data-role="page" id="reports">
+        <header data-role="header">
+           <a href="#" data-role="button" class="ui-btn ui-btn-icon-left ui-icon-back" id="navback">Back</a>
+            <h1>Direct Reports</h1>
+            <a href="#home" data-role="button" class="ui-btn ui-btn-icon-left ui-icon-search" id="navsearch">Search</a>   
+       </header>
+       
+       
+            <section data-role="content" id="reportContent">
+   
+            </section>                                                                                                               
+       
+        <footer data-role="footer" data-position="fixed">
+            <h4>My Company 2015</h4>
+        </footer>
+    </div>  
+</body>
+</html>
