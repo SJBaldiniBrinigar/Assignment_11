@@ -1,51 +1,40 @@
-$(document).on("pagebeforeshow", "#details", function () {
+$(document).on("pagebeforeshow", "#details", (function () {
     "use strict";
-    $('body').on("click", "#results a", function () {
-        
-        var employeeId = this.lastChild.id;
-        var reportsNum = 0;
-        var i;
-        
-        
-        //count how many employees report to this person
-        for (i = 0; i < employees.length; i++) {
-            for (employeeId){
-                    if (value.id === value.reportsTo) {
-                    reportsNum += 1;
+        var employeeId = window.employeeId;
+        var info = '';
+        var detail = '';
+        var profile= '';
+            $.getJSON("data/json.js", function (data) {
+            $.each(data, function (index, value) {
+                for (var i = 0; i < value.length; i++) { 
+                if (value[i].id === employeeId) {
+                    var reportsTo = value[i].reportsTo
+                    detail += '<span><href="#details"'+'id='+value[i].id+'><img src="' + value[i].imagePath + '"><h3>' + value[i].name + '</h3><p>' + value[i].title + '</p></span>';
+
                 }
             }
-        };
-        
-        var employeeInfo = "";
-        
-        $('#profile').empty();
-        $('#info').empty();
-        
-        $.getJSON("data/json.js", function (data) {
-            $.each(data, function () {
-                var mgrNum = data.employees[employeeId - 1].reportsTo - 1;
-                var mgr;
-                if (data.employees[mgrNum] === undefined) {
-                    mgr = "None";
-                } else {
-                    mgr = data.employees[mgrNum].name;
-                }
             
-                $.each(this, function (key, value) {
-                    if (employeeId === value.id) {
-                        $('#profile').append('<img src="' + value.imagePath + '">' + '<div>' + '<h2>' + value.name + '</h2><p>' + value.title + '</p></div>');
-                        employeeInfo += '<li><a id="mgrLink" href="#details"><h3>View Manager</h3><p>' + mgr + '</p></a></li>';
-                        employeeInfo += '<li><a id="dirRptsLink" href="#reports"><h3>View Direct Reports</h3><p>' + reportsNum + '</p></a></li>';
-                        employeeInfo += '<li><a id="callOffice" href="tel:+1' + value.officePh + '"><h4>Call Office</h4><p>' + value.officeNumber + '</p></a></li>';
-                        employeeInfo += '<li><a id="callCell" href="tel:+1' + value.cell + '"><h4>Call Cell</h4><p>' + value.cellNumber + '</p></a></li>';
-                        employeeInfo += '<li><a id="sendEmail" href="mailto:' + value.email + '"><h4>Send Email</h4><p>' + value.email + '</p></a></li>';
+                for (var j = 0; j < value.length; j++) { 
+                if (value[j].id === reportsTo) {
+                    info += '<li><a href="#reports"'+'<h3>View Manager</h3>'+'<h5>' + value[j].name + '</h5><p>' + value[j].title + '</p><span class="ui-li-count">' + value[j].reportsTo.length + '</span></a><li>';
+                }
+            }
                 
-                        $("#info").html(employeeInfo).listview("refresh");
-                    }
-                });
-            });
+                for (var i = 0; i < value.length; i++) { 
+                if (value[i].id === employeeId) {
+                    var reportsTo = value[i].reportsTo
+                    info += '<li><a id="callOffice" href="tel:+1' + value[i].officePh + '"><h4>Call Office</h4><p>' + value[i].officePh + '</p></a></li>';
+                    info += '<li><a id="callCell" href="tel:+1' + value[i].cell + '"><h4>Call Cell</h4><p>' + value[i].cell + '</p></a></li>';
+                    info += '<li><a id="sendEmail" href="mailto:' + value[i].email + '"><h4>Send Email</h4><p>' + value[i].email + '</p></a></li>';
+                    
+                }
+            }
+            
         });
+                $('#profile').html(detail);     
+            $('#info').html(info).listview("refresh");   
     });
-});
+        
+}));
     
 
